@@ -140,28 +140,34 @@ export default function App() {
     <div style={{ display: 'flex', flexDirection: 'column', background: '#f0f2f5' }}>
 
       {/* Header */}
-      <header style={{ background: 'linear-gradient(135deg, #111827 0%, #1e1b4b 100%)', flexShrink: 0, position: 'relative', overflow: 'hidden' }}>
-        <img
-          src={`${import.meta.env.BASE_URL}headerimage.png`}
-          alt=""
-          style={{ position: 'absolute', top: 0, right: 0, height: '100%', width: 'auto', display: 'block', pointerEvents: 'none' }}
-        />
-        {!isWide && (
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(17,24,39,0.82)', zIndex: 0, pointerEvents: 'none' }} />
+      <header style={{ background: '#0f172a', flexShrink: 0, position: 'relative', overflow: 'hidden' }}>
+        {/* Left orange accent bar */}
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 5, background: 'linear-gradient(to bottom, #f4a261, #e63946)', zIndex: 2, pointerEvents: 'none' }} />
+        {/* Warm right panel */}
+        {isWide && (
+          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '42%', background: 'linear-gradient(to right, #7c2d12, #e63946 45%, #f4a261)', zIndex: 0, pointerEvents: 'none' }} />
         )}
-        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 24px', position: 'relative', zIndex: 1 }}>
+        {/* Diagonal divider */}
+        {isWide && (
+          <div style={{ position: 'absolute', right: 'calc(42% - 60px)', top: -40, height: 'calc(100% + 80px)', width: 110, background: '#0f172a', transform: 'rotate(13deg)', zIndex: 1, pointerEvents: 'none' }} />
+        )}
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 24px', position: 'relative', zIndex: 3 }}>
           <h1 style={{ fontSize: 26, fontWeight: 800, color: '#fff', letterSpacing: -0.5, marginBottom: 6 }}>
             Cloud &amp; AI Buddy Programme
           </h1>
-          <p style={{ color: '#94a3b8', fontSize: 14, marginBottom: 16 }}>
+          <p style={{ color: '#94a3b8', fontSize: 14, marginBottom: !isWide ? 16 : 0 }}>
             Connect with peers and mentors across cloud and AI topics. Pair, learn, share, grow.
           </p>
+          {isWide && (
+            <div style={{ position: 'absolute', right: 24, top: 0, bottom: 0, display: 'flex', alignItems: 'center' }}>
+              <span style={{ fontSize: 19, fontWeight: 800, color: 'rgba(255,255,255,0.92)', whiteSpace: 'nowrap' }}>
+                Pair. Learn. Share. Grow.
+              </span>
+            </div>
+          )}
           {!isWide && (
             <div style={{ display: 'flex', gap: 8 }}>
-              <button
-                onClick={() => setFilterOpen(true)}
-                style={{ ...btnPrimary, fontSize: 13, background: '#374151' }}
-              >
+              <button onClick={() => setFilterOpen(true)} style={{ ...btnPrimary, fontSize: 13, background: '#374151' }}>
                 ☰ FILTER
               </button>
             </div>
